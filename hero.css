@@ -1,0 +1,815 @@
+﻿/* ==========================================================================
+   INTERN 1: ULTRA-MODERN & REALISTIC HERO SECTION (hero.css)
+   Scoped strictly to .hero-section to guarantee zero CSS conflicts with teammates.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --hero-font: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --hero-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+
+  /* Color Palette */
+  --hero-bg: #07090e;
+  --hero-surface: rgba(15, 21, 37, 0.75);
+  --hero-surface-hover: rgba(22, 31, 54, 0.85);
+  --hero-border: rgba(255, 255, 255, 0.08);
+  --hero-border-accent: rgba(99, 102, 241, 0.35);
+  
+  --hero-primary: #6366f1;
+  --hero-primary-light: #818cf8;
+  --hero-primary-glow: rgba(99, 102, 241, 0.25);
+  
+  --hero-accent-cyan: #06b6d4;
+  --hero-accent-pink: #ec4899;
+  --hero-accent-green: #10b981;
+
+  --hero-text-100: #ffffff;
+  --hero-text-200: #f1f5f9;
+  --hero-text-400: #94a3b8;
+  --hero-text-600: #64748b;
+}
+
+/* Reset inside hero section */
+.hero-section,
+.hero-section * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Base Section */
+.hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--hero-bg);
+  color: var(--hero-text-200);
+  font-family: var(--hero-font);
+  padding: 5rem 1.5rem 4rem 1.5rem;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Realistic Tech Background Grid */
+.hero-grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 80%);
+  pointer-events: none;
+  z-index: -2;
+}
+
+/* Ambient Ray Beams & Glows */
+.hero-glow-beam-1 {
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 720px;
+  height: 480px;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(99, 102, 241, 0.28) 0%, rgba(139, 92, 246, 0.12) 45%, transparent 75%);
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: -1;
+  animation: hero-ambient-pulse 8s ease-in-out infinite alternate;
+}
+
+.hero-glow-beam-2 {
+  position: absolute;
+  top: 35%;
+  right: -5%;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.16) 0%, transparent 65%);
+  filter: blur(95px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes hero-ambient-pulse {
+  0% { opacity: 0.8; transform: translateX(-50%) scale(0.95); }
+  100% { opacity: 1.1; transform: translateX(-50%) scale(1.05); }
+}
+
+/* Main Two-Column Container */
+.hero-container {
+  position: relative;
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.12fr 0.88fr;
+  gap: 3.5rem;
+  align-items: center;
+  z-index: 1;
+}
+
+/* Left Column: Hero Content */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+/* Interactive Pill Badge */
+.hero-badge-link {
+  text-decoration: none;
+  display: inline-flex;
+  margin-bottom: 1.6rem;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.45rem 1rem 0.45rem 0.5rem;
+  background: rgba(99, 102, 241, 0.08);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  border-radius: 9999px;
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: #c7d2fe;
+  backdrop-filter: blur(12px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.hero-badge:hover {
+  background: rgba(99, 102, 241, 0.16);
+  border-color: rgba(99, 102, 241, 0.45);
+  transform: translateY(-1px);
+  color: #ffffff;
+}
+
+.hero-badge-tag {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: #ffffff;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.hero-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 6px #34d399;
+  animation: hero-live-pulse 1.8s infinite;
+}
+
+@keyframes hero-live-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.75); }
+}
+
+.hero-badge-arrow {
+  font-size: 0.9rem;
+  transition: transform 0.2s ease;
+}
+
+.hero-badge:hover .hero-badge-arrow {
+  transform: translateX(3px);
+}
+
+/* Main Typography */
+.hero-title {
+  font-size: clamp(2.4rem, 4.4vw, 4rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: var(--hero-text-100);
+  margin-bottom: 1.35rem;
+}
+
+.hero-gradient-text {
+  background: linear-gradient(135deg, #ffffff 10%, #a5b4fc 50%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.hero-gradient-accent {
+  background: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #f472b6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtitle */
+.hero-subtitle {
+  font-size: clamp(1.05rem, 1.35vw, 1.25rem);
+  line-height: 1.65;
+  color: var(--hero-text-400);
+  max-width: 550px;
+  margin-bottom: 2.2rem;
+  font-weight: 400;
+}
+
+.hero-subtitle strong {
+  color: var(--hero-text-200);
+  font-weight: 600;
+}
+
+/* CTA Buttons */
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3.2rem;
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 0.9rem 1.75rem;
+  border-radius: 12px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* Primary Button with Specular Gradient */
+.hero-btn-primary {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 50%, #4338ca 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.1),
+    0 8px 24px -4px rgba(99, 102, 241, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.hero-btn-primary:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+  box-shadow: 
+    0 12px 30px -4px rgba(99, 102, 241, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.hero-btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Secondary Button with Glass Backdrop */
+.hero-btn-secondary {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--hero-text-200);
+  border: 1px solid var(--hero-border);
+  backdrop-filter: blur(12px);
+}
+
+.hero-btn-secondary:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.hero-btn svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.2s ease;
+}
+
+.hero-btn-primary:hover svg {
+  transform: translateY(2px);
+}
+
+.hero-btn-secondary:hover svg {
+  transform: translateX(3px);
+}
+
+/* Stats Counter Row */
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 2.8rem;
+  padding-top: 1.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  width: 100%;
+  max-width: 530px;
+}
+
+.hero-stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-stat-number {
+  font-size: 1.95rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--hero-text-100);
+  display: flex;
+  align-items: baseline;
+  gap: 0.15rem;
+}
+
+.hero-stat-accent {
+  color: var(--hero-primary-light);
+  font-size: 1.5rem;
+}
+
+.hero-stat-label {
+  font-size: 0.8rem;
+  color: var(--hero-text-400);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 0.2rem;
+}
+
+/* ==========================================================================
+   RIGHT COLUMN: REALISTIC DEVELOPER WORKSPACE CARD
+   ========================================================================== */
+.hero-visual-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Floating Status Badges for Realism */
+.hero-floating-badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 0.95rem;
+  background: rgba(15, 21, 37, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.45);
+  z-index: 3;
+  animation: hero-float-badge 4.5s ease-in-out infinite alternate;
+}
+
+.hero-floating-badge-top {
+  top: -24px;
+  right: 18px;
+}
+
+.hero-floating-badge-bottom {
+  bottom: -20px;
+  left: -20px;
+  animation-delay: -2.2s;
+}
+
+@keyframes hero-float-badge {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-7px); }
+}
+
+.hero-pill-icon {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.pill-green {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+}
+
+.pill-purple {
+  background: rgba(168, 85, 247, 0.2);
+  color: #c084fc;
+}
+
+/* The Main Window Frame */
+.hero-app-window {
+  width: 100%;
+  max-width: 500px;
+  background: var(--hero-surface);
+  border: 1px solid var(--hero-border);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 
+    0 25px 60px -15px rgba(0, 0, 0, 0.7),
+    0 0 45px rgba(99, 102, 241, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-app-window:hover {
+  border-color: var(--hero-border-accent);
+  box-shadow: 
+    0 30px 70px -15px rgba(0, 0, 0, 0.8),
+    0 0 50px rgba(99, 102, 241, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+/* Window Titlebar */
+.hero-window-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.25rem;
+  background: rgba(10, 14, 26, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.hero-window-controls {
+  display: flex;
+  gap: 7px;
+}
+
+.hero-window-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+
+.dot-close { background-color: #ff5f56; border: 1px solid #e0443e; }
+.dot-min { background-color: #ffbd2e; border: 1px solid #dea123; }
+.dot-max { background-color: #27c93f; border: 1px solid #1aab29; }
+
+/* Window Tabs */
+.hero-window-tabs {
+  display: flex;
+  gap: 0.3rem;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.2rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hero-tab-btn {
+  background: transparent;
+  border: none;
+  color: var(--hero-text-600);
+  font-family: var(--hero-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hero-tab-btn.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Window Content Body */
+.hero-window-body {
+  padding: 1.4rem;
+}
+
+/* TAB 1: Real Git Workflow & Branch Graph */
+.hero-tab-content {
+  display: none;
+}
+
+.hero-tab-content.active {
+  display: block;
+}
+
+.hero-git-workflow {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+/* Branch status banner */
+.hero-git-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.9rem;
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  border-radius: 10px;
+  font-family: var(--hero-mono);
+  font-size: 0.78rem;
+}
+
+.hero-git-branch {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #c7d2fe;
+}
+
+.hero-git-diff {
+  color: #34d399;
+  font-weight: 600;
+}
+
+/* Git Commit Stream */
+.hero-commit-stream {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  font-family: var(--hero-mono);
+}
+
+.hero-commit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  position: relative;
+}
+
+.hero-commit-marker {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: bold;
+  flex-shrink: 0;
+  margin-top: 2px;
+  border: 2px solid #07090e;
+}
+
+.marker-1 { background: #6366f1; color: #fff; box-shadow: 0 0 8px rgba(99, 102, 241, 0.7); }
+.marker-2 { background: #06b6d4; color: #fff; }
+.marker-main { background: #10b981; color: #fff; }
+
+.hero-commit-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.hero-commit-title {
+  font-size: 0.82rem;
+  color: var(--hero-text-200);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero-commit-hash {
+  font-size: 0.72rem;
+  color: var(--hero-text-600);
+}
+
+.hero-commit-meta {
+  font-size: 0.72rem;
+  color: var(--hero-text-400);
+  margin-top: 0.15rem;
+}
+
+/* Terminal Tab */
+.hero-terminal-code {
+  font-family: var(--hero-mono);
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: #cbd5e1;
+}
+
+.t-prompt { color: #818cf8; user-select: none; }
+.t-cmd { color: #ffffff; font-weight: 600; }
+.t-out { color: #64748b; margin-bottom: 0.5rem; }
+.t-success { color: #34d399; font-weight: 600; }
+
+/* Realistic Interns Grid in Showcase */
+.hero-roster-wrap {
+  margin-top: 1.3rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hero-roster-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--hero-text-400);
+  margin-bottom: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero-roster-badge {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 0.15rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+.hero-roster-avatars {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+}
+
+.hero-avatar-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.4rem 0.2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.hero-avatar-card:hover {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.4);
+  transform: translateY(-2px);
+}
+
+.hero-avatar-card.active-user {
+  background: rgba(99, 102, 241, 0.18);
+  border-color: #818cf8;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.35);
+}
+
+.hero-avatar-img {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.72rem;
+  color: #ffffff;
+}
+
+.hero-avatar-name {
+  font-size: 0.65rem;
+  color: var(--hero-text-400);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Avatar Colors */
+.av-i1 { background: linear-gradient(135deg, #6366f1, #4f46e5); }
+.av-i2 { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+.av-i3 { background: linear-gradient(135deg, #10b981, #059669); }
+.av-i4 { background: linear-gradient(135deg, #f59e0b, #d97706); }
+.av-i5 { background: linear-gradient(135deg, #ec4899, #db2777); }
+.av-i6 { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+.av-i7 { background: linear-gradient(135deg, #64748b, #475569); }
+
+/* ==========================================================================
+   BOTTOM TRUST / TECH BAR (Realistic Collaboration Proof)
+   ========================================================================== */
+.hero-tech-banner {
+  margin-top: 4.5rem;
+  width: 100%;
+  max-width: 1240px;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  z-index: 1;
+}
+
+.hero-tech-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--hero-text-600);
+  font-weight: 600;
+}
+
+.hero-tech-logos {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.hero-tech-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--hero-text-400);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.hero-tech-item:hover {
+  color: #ffffff;
+}
+
+.hero-tech-item svg {
+  width: 17px;
+  height: 17px;
+  fill: currentColor;
+}
+
+/* ==========================================================================
+   RESPONSIVE LAYOUT
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .hero-content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-cta-group {
+    justify-content: center;
+  }
+
+  .hero-stats {
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  .hero-tech-banner {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.2rem;
+  }
+
+  .hero-tech-logos {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-section {
+    padding: 3.5rem 1rem 3rem 1rem;
+  }
+
+  .hero-floating-badge {
+    display: none; /* Avoid cramped mobile views */
+  }
+
+  .hero-cta-group {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .hero-btn {
+    width: 100%;
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+
+  .hero-app-window {
+    max-width: 100%;
+  }
+
+  .hero-roster-avatars {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
